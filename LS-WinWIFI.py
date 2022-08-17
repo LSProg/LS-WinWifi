@@ -35,8 +35,8 @@ INVITE_5 = "\nNettoyage des fichiers temp en cours veuillez patienter ..."
 INVITE_6 = "Job terminé !"
 INVITE_7 = "Appuyez sur entrer pour terminer !\n>>>"
 INVITE_8 = "Génération du fichier XML pour le profil: "
-INVITE_9 = "Appuyez sur entrer pour terminé ce programme"
-INVITE_ERREUR = "les service wlansvc n'est pas activer, la cause la plus probable est une abscence de carte wifi ou probleme de pilote."
+INVITE_9 = "Appuyez sur entrer pour terminer ce programme"
+INVITE_ERREUR = "le service wlansvc n'est pas activé, la cause la plus probable est une abscence de carte wifi ou un probleme de pilote."
 
 ASCI_NOM_PROG = text2art(__nom_programme__,"random")
 
@@ -44,7 +44,7 @@ ASCI_NOM_PROG = text2art(__nom_programme__,"random")
 Passe_Ligne = lambda: print("\n")
 
 def Cmd(commande):
-    """ execute une commande est renvoie le resultat de cette commande
+    """ execute une commande et renvoie le resultat de cette commande
     """
     stream = os.popen(commande)
     output = stream.read()
@@ -58,7 +58,7 @@ def Clear():
         print("\n\n\n")
 
 def Check_Path(path,create=False):
-    """ verifie si le repertoire spécifier existe """
+    """ verifie si le repertoire spécifié existe """
     resultat = os.path.exists(path)
     if not resultat:
         if create:
@@ -74,7 +74,7 @@ def Pause(invite=INVITE_1):
     
 def listdirectory(path):
     """ source : https://python.developpez.com/faq/?page=Fichier
-    va recuperer les nom des fichiers dans un repertoire et les renvoyer sous forme de liste """
+    va recuperer les noms des fichiers dans un repertoire et les renvoyer sous forme de liste """
     fichier=[]
     for root, dirs, files in os.walk(path):
         for i in files:
@@ -83,7 +83,7 @@ def listdirectory(path):
 
 
 def Affichage_Couleur(invite1,couleur1="vert",invite2=None,couleur2="vert",pause=False):
-    """ permet d'afficher des information en couleur dans le shell """
+    """ permet d'afficher des informations en couleur dans le shell """
     invite1 = str(invite1)
     invite2 = str(invite2)
     if invite2 != "None":
@@ -160,9 +160,9 @@ class Programme:
         self.profiles = []
 
     def Help(self):
-        """ fonction qui permet d'afficher de l'aidde sur l'utilisation du prgramme dans le shell """
-        Affichage_Couleur("Executer ce script dans un terminal CMD.","jaune")
-        Affichage_Couleur("Entrer des double guillemet pour le nom du repertoire et le nom du profile","jaune")
+        """ fonction qui permet d'afficher de l'aide sur l'utilisation du prgramme dans le shell """
+        Affichage_Couleur("Executez ce script dans un terminal CMD.","jaune")
+        Affichage_Couleur("Entrez des doubles guillemets pour le nom du repertoire et le nom du profil","jaune")
         Affichage_Couleur("Utilisation:\npython [REPERTOIRE] [import/export] [all/profile_name]\n ","jaune")
         Affichage_Couleur('Exemple 1: ','jaune','LS-WinWifi.exe "C:\path\script.py" export all',"bleu")
         Affichage_Couleur('Exemple 2: ','jaune','LS-WinWifi.exe "C:\path\script.py" import "my_wifi_name"',"bleu")
@@ -170,7 +170,7 @@ class Programme:
         Affichage_Couleur('Exemple 1: ','jaune','LS-WinWifi.exe "C:\path\script.py" export "my wifi name"',"bleu")
         
     def Import(self,arg):
-        """ fonction qui va importer selon les argument un ou plusieur profile wifi """
+        """ fonction qui va importer selon les arguments un ou plusieurs profils wifi """
         Affichage_Asci()
         resultat = Check_Path(DOSSIER)
         if resultat:
@@ -193,11 +193,11 @@ class Programme:
             Affichage_Couleur("Job terminé")
             time.sleep(5)
         else:
-             Affichage_Couleur(f"le repertoire '{DOSSIER}' n'existe pas.\nil est impossible d'importer des profil wifi")
+             Affichage_Couleur(f"le repertoire '{DOSSIER}' n'existe pas.\nil est impossible d'importer des profils wifi")
             
         
     def Get_Profile_Name(self):
-        """ va lister les nom des profile wifi existant"""
+        """ liste les nom des profils wifi existants"""
         resultat = Cmd("netsh wlan show profile")
         lignes = resultat.split("\n")
         cptr = 0
@@ -215,7 +215,7 @@ class Programme:
         
     
     def Export(self,arg):
-        """ va exporter au format xml un ou plusieurs profile wifi, selon les argument fournis lors de l'execution """
+        """ Exporte au format xml un ou plusieurs profils wifi, selon les arguments fournis lors de l'execution """
         Affichage_Asci()
         self.Get_Profile_Name()
         if arg == "all":
@@ -233,7 +233,7 @@ class Programme:
         if comfirmation:
             os.startfile(DOSSIER)
         else:
-            Affichage_Couleur(f"Erreur le profile:{arg} n'a pas été trouvé !! ","rouge")
+            Affichage_Couleur(f"Erreur le profil:{arg} n'a pas été trouvé !! ","rouge")
             
             
             
@@ -253,8 +253,8 @@ class Programme:
                 recherche = element.find("'")
                 if not recherche == -1:
                     self.Help()
-                    Affichage_Couleur("Erreur dans votre syntaxe veuillez mettre des double guillemets !!","rouge")
-                    input("Appuyer sur entrer pour terminer")
+                    Affichage_Couleur("Erreur dans votre syntaxe veuillez mettre des doubles guillemets !!","rouge")
+                    input("Appuyez sur entrer pour terminer")
                     suite = False
                                  
                 self.elements = element
