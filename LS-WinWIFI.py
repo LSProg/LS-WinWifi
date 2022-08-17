@@ -24,7 +24,7 @@ http://creativecommons.org/licenses/by-nc-nd/4.0/"""
 #constantes programme
 NOM_UTILISATEUR = os.environ["USERNAME"]
 PROFILE = os.environ['USERPROFILE']
-DOSSIER = "{}\WiFi {}".format(PROFILE,NOM_UTILISATEUR)
+DOSSIER = "{}\LS_WinWiFi {}".format(PROFILE,NOM_UTILISATEUR)
 COMMANDE2 = 'mkdir "{}"'.format(DOSSIER)
 
 INVITE_1 = "Appuyez sur entrer pour continuer"
@@ -164,10 +164,10 @@ class Programme:
         Affichage_Couleur("Executez ce script dans un terminal CMD.","jaune")
         Affichage_Couleur("Entrez des doubles guillemets pour le nom du repertoire et le nom du profil","jaune")
         Affichage_Couleur("Utilisation:\npython [REPERTOIRE] [import/export] [all/profile_name]\n ","jaune")
-        Affichage_Couleur('Exemple 1: ','jaune','LS-WinWifi.exe "C:\path\script.py" export all',"bleu")
-        Affichage_Couleur('Exemple 2: ','jaune','LS-WinWifi.exe "C:\path\script.py" import "my_wifi_name"',"bleu")
-        Affichage_Couleur('Exemple 3: ','jaune','LS-WinWifi.exe "C:\path\script.py" import all',"bleu")
-        Affichage_Couleur('Exemple 1: ','jaune','LS-WinWifi.exe "C:\path\script.py" export "my wifi name"',"bleu")
+        Affichage_Couleur('Exemple 1: ','jaune','LS-WinWifi.exe export all',"bleu")
+        Affichage_Couleur('Exemple 2: ','jaune','LS-WinWifi.exe import "my_wifi_name"',"bleu")
+        Affichage_Couleur('Exemple 3: ','jaune','LS-WinWifi.exe import all',"bleu")
+        Affichage_Couleur('Exemple 1: ','jaune','LS-WinWifi.exe export "my wifi name"',"bleu")
         
     def Import(self,arg):
         """ fonction qui va importer selon les arguments un ou plusieurs profils wifi """
